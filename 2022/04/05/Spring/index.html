@@ -472,14 +472,14 @@ Spring是分层的Java SE/EE应用full-stack轻量级开源框架，（这里的
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    761
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    8 分
                 </div>
                 
 
@@ -589,11 +589,7 @@ Spring是分层的Java SE/EE应用full-stack轻量级开源框架，（这里的
 <td align="center">对象长时间不用时java自动回收</td>
 </tr>
 </tbody></table>
-<h3 id="Bean实例化三种方式"><a href="#Bean实例化三种方式" class="headerlink" title="Bean实例化三种方式"></a>Bean实例化三种方式</h3><ul>
-<li>无参构造方法实例化(重点)</li>
-<li>工厂静态方法实例化</li>
-</ul>
-<p>创建静态工厂</p>
+<h3 id="Bean实例化三种方式"><a href="#Bean实例化三种方式" class="headerlink" title="Bean实例化三种方式"></a>Bean实例化三种方式</h3><h4 id="无参构造方法实例化-重点"><a href="#无参构造方法实例化-重点" class="headerlink" title="无参构造方法实例化(重点)"></a>无参构造方法实例化(重点)</h4><h4 id="工厂静态方法实例化"><a href="#工厂静态方法实例化" class="headerlink" title="工厂静态方法实例化"></a>工厂静态方法实例化</h4><p>创建静态工厂</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>sanqianxc<span class="token punctuation">.</span>factory</span><span class="token punctuation">;</span>
 
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>sanqianxc<span class="token punctuation">.</span></span><span class="token class-name">UserDao</span><span class="token punctuation">;</span>
@@ -616,10 +612,7 @@ Spring是分层的Java SE/EE应用full-stack轻量级开源框架，（这里的
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userDao<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>工厂实例方法实例化</li>
-</ul>
-<p>和静态方法大致,不同点在于配置</p>
+<h4 id="工厂实例方法实例化"><a href="#工厂实例方法实例化" class="headerlink" title="工厂实例方法实例化"></a>工厂实例方法实例化</h4><p>和静态方法大致,不同点在于配置</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DynamicFactory</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token class-name">UserDao</span> <span class="token function">getUserDao</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">UserDaoImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -627,6 +620,202 @@ Spring是分层的Java SE/EE应用full-stack轻量级开源框架，（这里的
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"factory"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.factory.DynamicFactory"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userDao"</span> factory<span class="token operator">-</span>bean<span class="token operator">=</span><span class="token string">"factory"</span> factory<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"getUserDao"</span><span class="token operator">/</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><blockquote>
+<p>依赖注入（Dependency Injection）：它是Spring框架核心IOC的具体实现。在编写程序时。它通过控制反转，将对象的创建交给了Spring，但是代码中不可能出现没有依赖的情况。IOC解耦只是降低他们的依赖关系，但不会消除。例如：业务层Service仍会调用持久层Dao的方法。   </p>
+</blockquote>
+<h4 id="set方法"><a href="#set方法" class="headerlink" title="set方法"></a><strong>set方法</strong></h4><ol>
+<li>在实现类中添加私有属性和构造函数</li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUserDao</span><span class="token punctuation">(</span><span class="token class-name">UserDao</span> userDao<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>userDao <span class="token operator">=</span> userDao<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        userDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>在applicationContext.xml文件中进行如下修改<pre class="line-numbers language-java" data-language="java"><code class="language-java">    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userDao"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.impl.UserDaoImpl"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userService"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.service.impl.UserServiceImpl"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>        这里的name指的是setUserDao中的“<span class="token class-name">UserDao</span>”并将其首字母大写改为小写，ref为对象引用，普通属性值用value<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"userDao"</span> ref<span class="token operator">=</span><span class="token string">"userDao"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>最后进行测试<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ApplicationContext</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">"applicationContext.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">UserService</span> userService <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span> app<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"userService"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+如果对上述UserController代码进行修改，用户自己new一个UserService对象<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">UserService</span> userService <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+userService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+再进行测试，则系统会报空指针异常</li>
+</ol>
+<p><em>补充另一种方式</em></p>
+<ol>
+<li>在applicationContext.xml文件中引入p命名空间<code>xmlns:p="http://www.springframework.org/schema/p"</code></li>
+<li>修改bean配置<code>&lt;bean id="userService" class="com.sanqianxc.service.impl.UserServiceImpl" p:userDao-ref="userDao"&gt;&lt;/bean&gt;</code></li>
+</ol>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a><strong>构造方法</strong></h4><ol>
+<li><p>在UserServcieImpl中添加构造函数</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token class-name">UserDao</span> userDao<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>userDao <span class="token operator">=</span> userDao<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">UserServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        userDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>在applicationContext.xml文件中进行如下修改</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userService"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.service.impl.UserServiceImpl"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>constructor<span class="token operator">-</span>arg name<span class="token operator">=</span><span class="token string">"userDao"</span> ref<span class="token operator">=</span><span class="token string">"userDao"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>constructor<span class="token operator">-</span>arg<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>最后进行测试</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ApplicationContext</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">"applicationContext.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">UserService</span> userService <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">UserService</span><span class="token punctuation">)</span> app<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">"userService"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        userService<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="其他数据类型注入"><a href="#其他数据类型注入" class="headerlink" title="其他数据类型注入"></a>其他数据类型注入</h4><h5 id="普通数据类型"><a href="#普通数据类型" class="headerlink" title="普通数据类型"></a>普通数据类型</h5></li>
+<li><p>修改UserDaoImpl代码</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserDaoImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserDao</span> <span class="token punctuation">{</span>
+
+    
+    <span class="token keyword">private</span> <span class="token class-name">String</span> username<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token class-name">String</span> username<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>username <span class="token operator">=</span> username<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAge</span><span class="token punctuation">(</span><span class="token keyword">int</span> age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>username<span class="token operator">+</span><span class="token string">"------"</span><span class="token operator">+</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"save runnning"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>在applicationContext.xml文件中进行如下修改</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userDao"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.impl.UserDaoImpl"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"username"</span> value<span class="token operator">=</span><span class="token string">"hetongxue"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"age"</span> value<span class="token operator">=</span><span class="token string">"18"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>进行测试</p>
+</li>
+</ol>
+<h5 id="集合数据类型"><a href="#集合数据类型" class="headerlink" title="集合数据类型"></a>集合数据类型</h5><blockquote>
+<p>下面展示了List，Map，Properties三种集合的注入<br>1.创建实体User类</p>
+</blockquote>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> addr<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"User{"</span> <span class="token operator">+</span> <span class="token string">"name='"</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span> <span class="token string">", addr='"</span> <span class="token operator">+</span> addr <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span> <span class="token char">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> addr<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAddr</span><span class="token punctuation">(</span><span class="token class-name">String</span> addr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>addr <span class="token operator">=</span> addr<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2.在UserDaoImpl中添加如下代码</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> strList<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> userMap<span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token class-name">Properties</span> properties<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setStrList</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> strList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>strList <span class="token operator">=</span> strList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUserMap</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> userMap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>userMap <span class="token operator">=</span> userMap<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setProperties</span><span class="token punctuation">(</span><span class="token class-name">Properties</span> properties<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>properties <span class="token operator">=</span> properties<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>strList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>properties<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"save runnning"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3.对applicationContext.xml文件做如下修改</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"userDao"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.impl.UserDaoImpl"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"strList"</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>list<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>value<span class="token punctuation">&gt;</span></span>aaa<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>value<span class="token punctuation">&gt;</span></span>bbb<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>value<span class="token punctuation">&gt;</span></span>ccc<span class="token operator">&lt;</span><span class="token operator">/</span>value<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>list<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"userMap"</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>map<span class="token punctuation">&gt;</span></span>
+            <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"u1"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"user1"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>entry key<span class="token operator">=</span><span class="token string">"u2"</span> value<span class="token operator">-</span>ref<span class="token operator">=</span><span class="token string">"user2"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>map<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"properties"</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>props<span class="token punctuation">&gt;</span></span>
+            <span class="token operator">&lt;</span>prop key<span class="token operator">=</span><span class="token string">"p1"</span><span class="token operator">&gt;</span>ppp1<span class="token operator">&lt;</span><span class="token operator">/</span>prop<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>prop key<span class="token operator">=</span><span class="token string">"p2"</span><span class="token operator">&gt;</span>ppp2<span class="token operator">&lt;</span><span class="token operator">/</span>prop<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>prop key<span class="token operator">=</span><span class="token string">"p3"</span><span class="token operator">&gt;</span>ppp3<span class="token operator">&lt;</span><span class="token operator">/</span>prop<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>props<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"user1"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.domain.User"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"name"</span> value<span class="token operator">=</span><span class="token string">"tom"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"addr"</span> value<span class="token operator">=</span><span class="token string">"beijing"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"user2"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.domain.User"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"name"</span> value<span class="token operator">=</span><span class="token string">"jerry"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"addr"</span> value<span class="token operator">=</span><span class="token string">"tianjin"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"user3"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"com.sanqianxc.domain.User"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"name"</span> value<span class="token operator">=</span><span class="token string">"lihua"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">"addr"</span> value<span class="token operator">=</span><span class="token string">"hunan"</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>4.进行测试</p>
+<hr>
+<p><strong>所有测试均在UserController进行，UserController代码从始至终没有变化</strong></p>
+
                 
             </div>
             <hr/>
@@ -1144,7 +1333,7 @@ Spring是分层的Java SE/EE应用full-stack轻量级开源框架，（这里的
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.8k</span>
+                        class="white-color">3.7k</span>
             
             
             
