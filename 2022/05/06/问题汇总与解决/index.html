@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SpringMVC异常处理机制, にじげん">
-    <meta name="description" content="SpringMVC异常处理机制
-系统中异常包括两类：预期异常和运行时异常RuntimeException，前者通过捕获异常从而获取异常信息，后者主要通过规范代码开发、测试等手段减少运行时异常的发生。
+    <meta name="keywords" content="问题汇总与解决, にじげん">
+    <meta name="description" content="本文主要用来记录本人在编写代码的过程中遇到的问题以及是如何解决的。
 
-异常处理两种方式1.使用Spring ">
+1.为什么 Tomcat 运行时默认打开 index.html 或 index.jsp？如何配置首页？
+
+这个是由Tomcat 的安装目录下的 conf\web.xml ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SpringMVC异常处理机制 | Warms</title>
+    <title>问题汇总与解决 | Warms</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SpringMVC异常处理机制</h1>
+                    <h1 class="description center-align post-title">问题汇总与解决</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +436,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/springMVC/">
-                                <span class="chip bg-color">springMVC</span>
+                            <a href="/tags/question/">
+                                <span class="chip bg-color">question</span>
                             </a>
                         
                     </div>
@@ -460,21 +461,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-18
+                    2022-05-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-18
+                    2022-05-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    398
+                    205
                 </div>
                 
 
@@ -504,54 +505,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SpringMVC异常处理机制"><a href="#SpringMVC异常处理机制" class="headerlink" title="SpringMVC异常处理机制"></a>SpringMVC异常处理机制</h1><blockquote>
-<p>系统中异常包括两类：预期异常和运行时异常RuntimeException，前者通过捕获异常从而获取异常信息，后者主要通过规范代码开发、测试等手段减少运行时异常的发生。</p>
+                <p><em>本文主要用来记录本人在编写代码的过程中遇到的问题以及是如何解决的。</em></p>
+<blockquote>
+<p>1.为什么 Tomcat 运行时默认打开 index.html 或 index.jsp？如何配置首页？</p>
 </blockquote>
-<h2 id="异常处理两种方式"><a href="#异常处理两种方式" class="headerlink" title="异常处理两种方式"></a>异常处理两种方式</h2><p>1.使用Spring MVC提供的简单异常处理器SimpleMappingExceptionResolver<br>2.实现Spring的异常处理接口HandlerExceptionResolver 自定义自己的异常处理器</p>
-<h2 id="简单异常处理器"><a href="#简单异常处理器" class="headerlink" title="简单异常处理器"></a>简单异常处理器</h2><p>SpringMVC已经定义好了该类型转换器，在使用时可以根据项目情况进行相应异常与视图的映射配置</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>defaultErrorView<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>exceptionMappings<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>java.lang.ClassCastException<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>error1<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.sanqianxc.exception.MyException<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>error2<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bean</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="自定义异常处理步骤"><a href="#自定义异常处理步骤" class="headerlink" title="自定义异常处理步骤"></a>自定义异常处理步骤</h2><p>① 创建异常处理器类实现HandlerExceptionResolver</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyExceptionResolver</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerExceptionResolver</span> <span class="token punctuation">{</span>
-    <span class="token comment">/*
-    * 参数Exception:异常对象
-    * 返回值ModelAndView:跳转到错误视图信息
-    * */</span>
-    <span class="token class-name">ModelAndView</span> modelAndView <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ModelAndView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token class-name">ModelAndView</span> <span class="token function">resolveException</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> httpServletRequest<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> httpServletResponse<span class="token punctuation">,</span> <span class="token class-name">Object</span> o<span class="token punctuation">,</span> <span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span> e <span class="token keyword">instanceof</span> <span class="token class-name">MyException</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            modelAndView<span class="token punctuation">.</span><span class="token function">addObject</span><span class="token punctuation">(</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token string">"自定义异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">ClassCastException</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            modelAndView<span class="token punctuation">.</span><span class="token function">addObject</span><span class="token punctuation">(</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token string">"类转换异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        modelAndView<span class="token punctuation">.</span><span class="token function">setViewName</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> modelAndView<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>② 配置异常处理器</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--自定义异常处理器--&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.sanqianxc.resolver.MyExceptionResolver<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>③ 编写异常页面</p>
-<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;通用的错误提示页面&lt;/h1&gt;
-    &lt;h1&gt;${info}&lt;/h1&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>④ 测试异常跳转</p>
-
+<p>这个是由Tomcat 的安装目录下的 conf\web.xml 所决定的，一般为：</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file-list</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">&gt;</span></span>index.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">&gt;</span></span>index.htm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">&gt;</span></span>index.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file-list</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所以如果没有对此信息进行编辑，系统会选择默认配置。若删除掉index.xxx则Tomcat启动后，自动跳转网页时会报错。修改欢迎页面（首次跳转页面），则需手动在web.xml进行配置。<br>e.g.</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file-list</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">&gt;</span></span>save.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file-list</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -577,7 +544,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sanqianxc.github.io/2022/04/18/Spring7/">https://sanqianxc.github.io/2022/04/18/Spring7/</a>
+                    <a href="https://sanqianxc.github.io/2022/05/06/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8E%E8%A7%A3%E5%86%B3/">https://sanqianxc.github.io/2022/05/06/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8E%E8%A7%A3%E5%86%B3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -615,8 +582,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/springMVC/">
-                                    <span class="chip bg-color">springMVC</span>
+                                <a href="/tags/question/">
+                                    <span class="chip bg-color">question</span>
                                 </a>
                             
                         </div>
@@ -790,17 +757,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/04/18/Spring8/">
+                <a href="/2022/05/06/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8E%E8%A7%A3%E5%86%B3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="AOP">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="问题汇总与解决">
                         
-                        <span class="card-title">AOP</span>
+                        <span class="card-title">问题汇总与解决</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -810,9 +778,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -825,11 +793,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springAOP/">
-                        <span class="chip bg-color">springAOP</span>
+                    <a href="/tags/question/">
+                        <span class="chip bg-color">question</span>
                     </a>
                     
                 </div>
@@ -843,13 +812,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/17/Spring6/">
+                <a href="/2022/05/04/Spring13/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="SpringMVC拦截器">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="SSM框架整合">
                         
-                        <span class="card-title">SpringMVC拦截器</span>
+                        <span class="card-title">SSM框架整合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -860,7 +829,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
                             </span>
                         <span class="publish-author">
                             
@@ -877,8 +846,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springMVC/">
-                        <span class="chip bg-color">springMVC</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                 </div>
