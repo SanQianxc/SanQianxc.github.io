@@ -395,11 +395,11 @@
                 </a>
                 
                 
-                <a href="/tags/MyBatis/" title="MyBatis: 3">
+                <a href="/tags/MyBatis/" title="MyBatis: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="MyBatis" style="background-color: #E8F8F5;">MyBatis
-                        <span class="tag-length">3</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -440,28 +440,55 @@
                 </a>
                 
                 
-                <a href="/tags/%E5%8D%95%E4%BE%8B/" title="单例: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="单例" style="background-color: #A3E4D7;">单例
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/question/" title="question: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="question" style="background-color: #85C1E9;">question
+                            data-tagname="question" style="background-color: #A3E4D7;">question
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/Spring/" title="Spring: 1">
+                <a href="/tags/Spring/" title="Spring: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            data-tagname="Spring" style="background-color: #F8C471;">Spring
+                            data-tagname="Spring" style="background-color: #85C1E9;">Spring
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Spring-MVC/" title="Spring MVC: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Spring MVC" style="background-color: #F8C471;">Spring MVC
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Spring-Boot/" title="Spring Boot: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Spring Boot" style="background-color: #F9E79F;">Spring Boot
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="单例模式" style="background-color: #D5F5E3;">单例模式
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" title="代理模式: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="代理模式" style="background-color: #82E0AA;">代理模式
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -475,6 +502,38 @@
 
     <article id="articles" class="container articles">
         <div class="row tags-posts">
+            
+            
+            <div class="article tag-post col s12 m6 l4" data-tags="MyBatis, Spring, Spring MVC, Spring Boot" data-aos="fade-up">
+                <div class="card">
+                    <a href="/2022/05/04/MyBatis-plus/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="MyBatis-plus">
+                            
+                            <span class="card-title">MyBatis-plus</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/java/" class="post-category">
+                                java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             
             <div class="article tag-post col s12 m6 l4" data-tags="Spring" data-aos="fade-up">
@@ -585,7 +644,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">28.1k</span>
+                        class="white-color">30.6k</span>
             
             
             
@@ -833,34 +892,7 @@ $(function () {
 </body>
 
 </html>
- // get the contents from search data
-                var datas = $("entry", xmlResponse).map(function () {
-                    return {
-                        title: $("title", this).text(),
-                        content: $("content", this).text(),
-                        url: $("url", this).text()
-                    };
-                }).get();
-                var $input = document.getElementById(search_id);
-                var $resultContent = document.getElementById(content_id);
-                $input.addEventListener('input', function () {
-                    var str = '<ul class=\"search-result-list\">';
-                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                    $resultContent.innerHTML = "";
-                    if (this.value.trim().length <= 0) {
-                        return;
-                    }
-                    // perform local searching
-                    datas.forEach(function (data) {
-                        var isMatch = true;
-                        var data_title = data.title.trim().toLowerCase();
-                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-                        var data_url = data.url;
-                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
-                        var index_title = -1;
-                        var index_content = -1;
-                        var first_occur = -1;
-                        // only match artiles with not empty titles and contents
+// only match artiles with not empty titles and contents
                         if (data_title !== '' && data_content !== '') {
                             keywords.forEach(function (keyword, i) {
                                 index_title = data_title.indexOf(keyword);
