@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的第一篇博客文章, にじげん">
-    <meta name="description" content="测试文档第一篇博客">
+    <meta name="keywords" content="Linux, にじげん">
+    <meta name="description" content="Linux网络连接的三种模式
+桥接模式虚拟系统可以和外部系统进行通讯，但容易造成IP冲突。每个网段中的虚拟系统Linux随着用户的增多会占用和实际地址一样的IP地址。
+NAT模式网络地址转换格式，虚拟系统可以和外部系统通讯，不造成IP冲突。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的第一篇博客文章 | Warms</title>
+    <title>Linux | Warms</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的第一篇博客文章</h1>
+                    <h1 class="description center-align post-title">Linux</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                <span class="chip bg-color">测试</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -444,8 +446,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="post-category">
-                                经验分享
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -457,28 +459,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-29
+                    2022-05-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-30
+                    2022-05-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9
+                    754
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -501,7 +503,85 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="测试文档"><a href="#测试文档" class="headerlink" title="测试文档"></a>测试文档</h1><h2 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h2>
+                <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="网络连接的三种模式"><a href="#网络连接的三种模式" class="headerlink" title="网络连接的三种模式"></a>网络连接的三种模式</h2><ol>
+<li>桥接模式<br>虚拟系统可以和外部系统进行通讯，但容易造成IP冲突。每个网段中的虚拟系统Linux随着用户的增多会占用和实际地址一样的IP地址。</li>
+<li>NAT模式<br>网络地址转换格式，虚拟系统可以和外部系统通讯，不造成IP冲突。虚拟系统Linux的IP地址会使用另一个网段通过主机代理进行访问。</li>
+<li>主机模式<br>独立的系统，不和外部系统连接网络。</li>
+</ol>
+<h2 id="虚拟机克隆"><a href="#虚拟机克隆" class="headerlink" title="虚拟机克隆"></a>虚拟机克隆</h2><ol>
+<li>直接拷贝一份安装好的虚拟机文件</li>
+<li>使用VMware的克隆操作，需要先关闭Linux系统</li>
+</ol>
+<h2 id="虚拟机快照"><a href="#虚拟机快照" class="headerlink" title="虚拟机快照"></a>虚拟机快照</h2><p>在使用虚拟机系统的时候，可以使用快照，回到之前的存档。</p>
+<h2 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h2><ol>
+<li>/bin ：是Binary的缩写，存放经常使用的命令</li>
+<li>/sbin：存放系统管理员使用的系统管理程序</li>
+<li>/home：存放普通用户的主目录</li>
+<li>/root：超级权限者的用户主目录</li>
+<li>/lib：系统开始所需要最基本的动态连接共享库，其作用类似于Windows里的DLL文件，几乎所有的应用程序都需要用到这些共享库。</li>
+<li>/lost+found：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</li>
+<li>/etc：所有系统管理所需要的配置文件和子目录</li>
+<li>/usr：存放系统的应用程序，类似于windows下的program files目录</li>
+<li>/boot：存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件</li>
+<li>/proc：虚拟目录，是系统内存的映射，访问这个目录来获取系统信息</li>
+<li>/tmp：存放临时文件</li>
+<li>/mnt：让用户临时挂在别的文件系统</li>
+<li>/opt：给主机额外安装软件所存放的目录</li>
+</ol>
+<h2 id="Redis通用命令"><a href="#Redis通用命令" class="headerlink" title="Redis通用命令"></a>Redis通用命令</h2><ul>
+<li>key：查看符合模板的所有key</li>
+<li>DEL：删除一个指定的key</li>
+<li>EXISTS：判断key是否存在</li>
+<li>EXPIRE：给一个key设置有效期，有效期到期时key会被自动删除</li>
+<li>TTL：查看一个key的剩余有效期</li>
+</ul>
+<h2 id="Redis数据结构"><a href="#Redis数据结构" class="headerlink" title="Redis数据结构"></a>Redis数据结构</h2><p>如果Value是一个java对象，例如一个User对象，则可以将对象序列化为JSON字符串后存储</p>
+<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p><strong>String的常见命令有：</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SET</td>
+<td>添加或者修改已经存在的一个String类型的键值对</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>根据key获取String类型的value</td>
+</tr>
+<tr>
+<td>MSET</td>
+<td>批量添加多个String类型的键值对</td>
+</tr>
+<tr>
+<td>MGET</td>
+<td>根据多个key获取多个String类型的value</td>
+</tr>
+<tr>
+<td>INCR</td>
+<td>让一个整型的key自增1</td>
+</tr>
+<tr>
+<td>INCRBY</td>
+<td>让一个整型的key自增并指定步长，例如：incrby num 2 让num值自增2</td>
+</tr>
+<tr>
+<td>INCRBYFLOAT</td>
+<td>让一个浮点类型的数字自增并指定步长</td>
+</tr>
+<tr>
+<td>SETNX</td>
+<td>添加一个String类型的键值对，前提是这个key不存在，否则不执行</td>
+</tr>
+<tr>
+<td>SETEX</td>
+<td>添加一个String类型的键值对，并且指定有效期</td>
+</tr>
+</tbody></table>
+
                 
             </div>
             <hr/>
@@ -527,7 +607,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sanqianxc.github.io/2022/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">https://sanqianxc.github.io/2022/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</a>
+                    <a href="https://sanqianxc.github.io/2022/05/19/Linux/">https://sanqianxc.github.io/2022/05/19/Linux/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +645,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                    <span class="chip bg-color">测试</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
                                 </a>
                             
                         </div>
@@ -740,17 +820,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                <a href="/2022/05/19/Linux/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Linux">
                         
-                        <span class="card-title">设计模式</span>
+                        <span class="card-title">Linux</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -760,9 +841,59 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/19/Redis/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis">
+                        
+                        <span class="card-title">Redis</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -778,51 +909,14 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">单例模式</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
-                    <a href="/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">代理模式</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/29/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            sanqianxc
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>

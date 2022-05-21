@@ -4,8 +4,20 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="我的第一篇博客文章, にじげん">
-    <meta name="description" content="测试文档第一篇博客">
+    <meta name="keywords" content="Spring Boot, にじげん">
+    <meta name="description" content="Spring BootSpringBoot是由Pivotal团队提供的全新框架，其设计目的是用来简化Spring应用的初始搭建以及开发过程
+
+Spring程序缺点
+
+
+依赖设置繁琐
+配置繁琐
+
+
+SpringBoot程序优点
+
+
+起步依赖（">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +29,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>我的第一篇博客文章 | Warms</title>
+    <title>Spring Boot | Warms</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">我的第一篇博客文章</h1>
+                    <h1 class="description center-align post-title">Spring Boot</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +444,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                <span class="chip bg-color">测试</span>
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
+                            </a>
+                        
+                            <a href="/tags/Spring-Boot/">
+                                <span class="chip bg-color">Spring Boot</span>
                             </a>
                         
                     </div>
@@ -444,8 +460,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="post-category">
-                                经验分享
+                            <a href="/categories/java/" class="post-category">
+                                java
                             </a>
                         
                     </div>
@@ -457,21 +473,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-29
+                    2022-05-14
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-30
+                    2022-05-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9
+                    377
                 </div>
                 
 
@@ -501,7 +517,62 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="测试文档"><a href="#测试文档" class="headerlink" title="测试文档"></a>测试文档</h1><h2 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h2>
+                <h1 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h1><p>SpringBoot是由Pivotal团队提供的全新框架，其设计目的是用来简化Spring应用的初始搭建以及开发过程</p>
+<blockquote>
+<p>Spring程序缺点</p>
+</blockquote>
+<ul>
+<li>依赖设置繁琐</li>
+<li>配置繁琐</li>
+</ul>
+<blockquote>
+<p>SpringBoot程序优点</p>
+</blockquote>
+<ul>
+<li>起步依赖（简化依赖配置）</li>
+<li>自动配置（简化常用工程相关配置）</li>
+<li>辅助功能（内置服务器，……）</li>
+</ul>
+<blockquote>
+<p>入门案例解析</p>
+</blockquote>
+<p><strong>parent</strong></p>
+<ol>
+<li>开发SpringBoot程序要继承spring-boot-starter-parent</li>
+<li>spring-boot-starter-parent中定义了若干个<font color="#ff0000"><b>依赖管理</b></font> </li>
+<li>继承parent模块可以<strong>避免多个依赖使用相同技术时出现依赖版本冲突</strong></li>
+<li>继承parent的形式也可以采用引入依赖的形式实现效果</li>
+</ol>
+<p><strong>starter</strong></p>
+<ol>
+<li>开发SpringBoot程序需要导入坐标时通常导入对应的starter</li>
+<li>每个不同的starter根据功能不同，通常包含多个依赖坐标</li>
+<li>使用starter可以实现快速配置的效果，达到<font color="#ff0000"><b>简化配置</b></font>的目的</li>
+</ol>
+<p><strong>引导类</strong></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringbootQuickstartApplication</span> <span class="token punctuation">{</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">SpringbootQuickstartApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>SpringBoot的引导类是Boot工程的执行入口，运行main方法就可以启动项目</li>
+<li>SpringBoot工程运行后初始化Spring容器，扫描引导类所在包加载bean</li>
+</ul>
+<p><strong>内嵌tomcat</strong></p>
+<ol>
+<li>内嵌Tomcat服务器是SpringBoot辅助功能之一</li>
+<li>内嵌Tomcat工作原理是将Tomcat服务器作为对象运行，并将该对象交给Spring容器管理</li>
+<li>变更内嵌服务器思想是去除现有服务器，添加全新的服务器</li>
+</ol>
+<blockquote>
+<p>REST风格</p>
+</blockquote>
+
                 
             </div>
             <hr/>
@@ -527,7 +598,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sanqianxc.github.io/2022/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">https://sanqianxc.github.io/2022/03/29/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</a>
+                    <a href="https://sanqianxc.github.io/2022/05/14/SpringBoot/">https://sanqianxc.github.io/2022/05/14/SpringBoot/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -565,8 +636,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                                    <span class="chip bg-color">测试</span>
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
+                                </a>
+                            
+                                <a href="/tags/Spring-Boot/">
+                                    <span class="chip bg-color">Spring Boot</span>
                                 </a>
                             
                         </div>
@@ -744,13 +819,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                <a href="/2022/05/19/Redis/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="设计模式">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Redis">
                         
-                        <span class="card-title">设计模式</span>
+                        <span class="card-title">Redis</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -761,7 +836,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-19
                         </span>
                         <span class="publish-author">
                             
@@ -778,12 +853,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">单例模式</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
-                    <a href="/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
-                        <span class="chip bg-color">代理模式</span>
+                    <a href="/tags/Redis/">
+                        <span class="chip bg-color">Redis</span>
                     </a>
                     
                 </div>
@@ -797,13 +872,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/29/hello-world/">
+                <a href="/2022/05/06/%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8E%E8%A7%A3%E5%86%B3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="问题汇总与解决">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">问题汇总与解决</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,15 +889,27 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            sanqianxc
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/question/">
+                        <span class="chip bg-color">question</span>
+                    </a>
+                    
                 </div>
                 
             </div>
